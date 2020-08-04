@@ -2,7 +2,7 @@
 
 This application demonstrates how any closed curve can be approximated by a series of epicycles, known as Fourier series.
 
-![Epicycles drawing an elephant](https://drive.google.com/uc?export=view&id=1szjjj84IZj7mxI32L2OT0M5DoIbZczYo)
+![Epicycles drawing an elephant](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/screenshots/elephant.gif?raw=true)
 
 *Epycicles drawing an elephant. Left: original, right: close up.*
 
@@ -10,26 +10,26 @@ In the animation above, there are 101 little white line segments, each one rotat
 
 ## Mathematical definition
 
-Given a closed curve $$f(t)$$ on the complex plane with $$0≤t<1$$, $$f(t)$$ can be expressed as the sum of epicycles:
+Given a closed curve *f(t)* on the complex plane with *0 ≤ t < 1*, *f(t)* can be expressed as the sum of epicycles:
 
 ![equation](https://latex.codecogs.com/gif.latex?f%28t%29%20%3D%20%5Csum_n%20c_n%20%5Ccdot%20e%5E%7Bn%202%20%5Cpi%20i%20t%7D)
 
-where $$n \in \{..., -2, -1, 0, 1, 2, ...\}$$ are the integer frequencies of the epicycles, and $$c_n$$ is the weight of the $$n$$-th epicycle, representing its radius and starting angle as a complex number. The weight $$c_n$$ can be calculated as:
+where *n* in *{..., -2, -1, 0, 1, 2, ...}* are the integer frequencies of the epicycles, and *c_n* is the weight of the *n*-th epicycle, representing its radius and starting angle as a complex number. The weight *c_n* can be calculated as:
 
 ![equation](https://latex.codecogs.com/gif.latex?c_n%20%3D%20%5Cint_0%5E1%20f%28t%29e%5E%7B-2%20%5Cpi%20i%20n%20t%7D%20dt)
 
-In practice, the integral is approximated numerically, and the sequence of frequencies is finite, containing the integers of lower magnitude: $$n \in \{0, -1, 1, -2, 2, -3, 3, ..., -N, N\}$$. The bigger the value $$N$$, the closer the resulted curve will be to the original.
+In practice, the integral is approximated numerically, and the sequence of frequencies is finite, containing the integers of lower magnitude: *n* in *{0, -1, 1, -2, 2, -3, 3, ..., -N, N}*. The bigger the value *N*, the closer the resulted curve will be to the original.
 
 ## Steps of the Animation
 
 1) Load any image. Siluette images are preffered, since they already have a nice contour.
-1) Run an edge detector. In this application, it's the [Canny edge detector](https://en.wikipedia.org/wiki/Canny_edge_detector), where the user can adjust the $$\sigma$$ value, the lower and the upper threshold parameters. The pixels of the resulted image will be our points on the complex plane representing the curve $$f(t)$$.
+1) Run an edge detector. In this application, it's the [Canny edge detector](https://en.wikipedia.org/wiki/Canny_edge_detector), where the user can adjust the sigma value, the lower and the upper threshold parameters. The pixels of the resulted image will be our points on the complex plane representing the curve *f(t)*.
 1) Reduce the number of points by random sampling (optional). This can speed up the next step, but might lose accuracy on the curve.
 1) Sort the points so they describe a closed curve. This is done by solving the [Traveling Salesman Problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem), which is approximated in two steps:
     1) Set up an initial route in a greedy way: select the first point, then choose the closest unused point iteratively.
     1) Refine the route by the [2-OPT](https://en.wikipedia.org/wiki/2-opt) algorithm.
-1) Based on $$f(t)$$, calculate the weight $$c_n$$ of the epicycle of frequency $$n$$, for a set of predetermined frequencies.
-1) Draw the animation, where $$t$$ goes from $$0$$ to $$1$$. The positions of the circles and line segments can be derived directly from the series of weights.
+1) Based on *f(t)*, calculate the weight *c_n* of the epicycle of frequency *n*, for a set of predetermined frequencies.
+1) Draw the animation, where *t* goes from *0* to *1*. The positions of the circles and line segments can be derived directly from the series of weights.
 
 ## Requirements
 
@@ -43,11 +43,15 @@ In practice, the integral is approximated numerically, and the sequence of frequ
 
 To start the application start `main.py` with the image as its first command-line argument:
 
-`python main.py images/castle.jpg`
+```
+python main.py images/castle.jpg
+```
 
 This will show the resulted animation on screen. However, if you want to save it as a GIF instead, run:
 
-`python main.py images/castle.jpg -s castle.gif`
+```
+python main.py images/castle.jpg -s castle.gif
+```
 
 After the application loaded the image, you will see the edge detection screen:
 
@@ -63,7 +67,7 @@ After closing the window, you will see the result of the final route, refined by
 
 Close it and you will see the final animation (or wait until the application saves it as a GIF).
 
-![Castle gif](https://drive.google.com/uc?export=view&id=15LY4cCtNmxtSFS710Otyj6Wo2YiqJq12)
+![Castle gif](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/screenshots/castle.gif?raw=true)
 
 ## Fine Tune Some Parameters
 
@@ -78,19 +82,19 @@ Notes:
 
 ![Octogon](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/images/octogon.png?raw=true)
 
-![Octogon gif](https://drive.google.com/uc?export=view&id=1dFXmn0NwGhenXSRt1clfIhLldg1Sw5Av)
+![Octogon gif](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/screenshots/octogon.gif?raw=true)
 
 ![Cat](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/images/cat.png?raw=true)
 
-![Cat gif](https://drive.google.com/uc?export=view&id=1IZSsbsYiw_ijQsYGEVxRfEd69hPH44eg)
+![Cat gif](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/screenshots/cat.gif?raw=true)
 
 ![Girl](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/images/girl.png?raw=true)
 
-![Girl gif](https://drive.google.com/uc?export=view&id=14LQ6qq72tHAReDtonpbcgSw1FeJVhoO6)
+![Girl gif](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/screenshots/girl.gif?raw=true)
 
 ![Dragon](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/images/dragon.jpg?raw=true)
 
-![Dragon gif](https://drive.google.com/uc?export=view&id=13BbGCFuivZWYKByR8SRrr72sP5IjVqKZ)
+![Dragon gif](https://github.com/HantosNorbert/Fourier-Series-Animation/blob/master/screenshots/dragon.gif?raw=true)
 
 
 ## Possible Improvements
